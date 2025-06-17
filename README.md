@@ -14,22 +14,20 @@ Create a new storage account in the Azure portal, ensuring that the "hierarchica
 
 Install the Azure CLI on your Ubuntu VM by running the following commands:
 
-<pre>
 ```
 bash
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 ```
-</pre>
+  
 ## Step 3: Authenticate with your Azure account
 
 Authenticate your Ubuntu VM with your Azure account by running the following command and following the on-screen instructions:
 
-<pre>
 ```
 bash
 az login
 ```
-</pre>
+
 ### Step 4: Download and Run the Repository Creation Script
 
 To get started, create a new script file called `create_apt_repo.sh` and paste the content of the script provided in the repo file called `create_apt_repo.sh". Update the script with your Azure Storage Account details, such as `ACCOUNT_NAME`, `ACCOUNT_KEY`, and `CONTAINER_NAME`. 
@@ -45,33 +43,32 @@ Here's a brief overview of what the script does:
 
 Make the script executable and run it:
 
-<pre>
 ```
 bash
 chmod +x create_apt_repo.sh
 ./create_apt_repo.sh
 ```
-</pre>
+
 
 By following this step and running the `create_apt_repo.sh` script, you will set up a local APT repository hosted in an Azure Blob Storage container. This repository can then be used as a package source on Ubuntu machines.
 
 ## Step 5: Configure the APT repository on client machines
 
 After running the script, you'll have a local APT repository hosted in an Azure Blob Storage container. To use this repository as a package source on an Ubuntu machine, add the repository URL to the /etc/apt/sources.list file:
-<pre>
+
 ```
 bash
 echo "deb [trusted=yes] https://<ACCOUNT_NAME>.blob.core.windows.net/<CONTAINER_NAME>/dists/<RELEASE_NAME>/main/binary-amd64/ /" | sudo tee -a /etc/apt/sources.list
 ```
-</pre>
+
 
 to update the repo run
-<pre>
+
 ```
 bash
 sudo apt update
 ```
-</pre>
+
 ## Conclusion
 
 In this tutorial, we showed you how to create a local APT repository hosted on Azure Blob Storage. This approach provides a scalable and accessible solution for hosting custom APT repositories. Now you can easily manage your custom packages or mirror existing repositories for faster access.
