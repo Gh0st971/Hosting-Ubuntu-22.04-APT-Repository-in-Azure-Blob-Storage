@@ -12,7 +12,7 @@ sudo apt-get install -y wget apt-utils
 # Variables
 # Create a container with the name of the current date in this format: YYYYMMDD
 # Example: 20231001 for October 1, 2023
-MIRROR_URL="http://http://archive.ubuntu.com/ubuntu"
+MIRROR_URL="http://archive.ubuntu.com/ubuntu"
 STORAGE_ACCOUNT="<STORAGE_ACCOUNT>"
 CONTAINER_NAME="<CONTAINER_NAME>"
 ACCOUNT_KEY="<STORAGE_ACCOUNT_KEY>"
