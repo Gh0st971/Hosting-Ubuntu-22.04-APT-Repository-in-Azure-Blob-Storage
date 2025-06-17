@@ -10,27 +10,29 @@ sudo apt-get install -y wget apt-utils
 #curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 
 # Variables
-# Variables
-MIRROR_URL="https://<MIRROR_URL>/ubuntu"
+# Create a container with the name of the current date in this format: YYYYMMDD
+# Example: 20231001 for October 1, 2023
+MIRROR_URL="http://http://archive.ubuntu.com/ubuntu"
 STORAGE_ACCOUNT="<STORAGE_ACCOUNT>"
 CONTAINER_NAME="<CONTAINER_NAME>"
 ACCOUNT_KEY="<STORAGE_ACCOUNT_KEY>"
+
 # Create directories
-mkdir -p dists/focal-updates/{main,multiverse,restricted,universe}/binary-amd64
+mkdir -p dists/jammy-updates/{main,multiverse,restricted,universe}/binary-amd64
 mkdir -p pool/{main,multiverse,restricted,universe}
 
 # Download metadata files
 echo "Downloading metadata files..."
-wget -q -P dists/focal-updates/ ${MIRROR_URL}/dists/focal-updates/InRelease
-wget -q -P dists/focal-updates/ ${MIRROR_URL}/dists/focal-updates/Release
-wget -q -P dists/focal-updates/ ${MIRROR_URL}/dists/focal-updates/Release.gpg
+wget -q -P dists/jammy-updates/ ${MIRROR_URL}/dists/jammy-updates/InRelease
+wget -q -P dists/jammy-updates/ ${MIRROR_URL}/dists/jammy-updates/Release
+wget -q -P dists/jammy-updates/ ${MIRROR_URL}/dists/jammy-updates/Release.gpg
 
 # Download Packages files
 components=("main" "multiverse" "restricted" "universe")
 for component in "${components[@]}"; do
-  wget -q -P dists/focal-updates/${component}/binary-amd64/ ${MIRROR_URL}/dists/focal-updates/${component}/binary-amd64/Packages
-  wget -q -P dists/focal-updates/${component}/binary-amd64/ ${MIRROR_URL}/dists/focal-updates/${component}/binary-amd64/Packages.gz
-  wget -q -P dists/focal-updates/${component}/binary-amd64/ ${MIRROR_URL}/dists/focal-updates/${component}/binary-amd64/Packages.xz
+  wget -q -P dists/jammy-updates/${component}/binary-amd64/ ${MIRROR_URL}/dists/jammy-updates/${component}/binary-amd64/Packages
+  wget -q -P dists/jammy-updates/${component}/binary-amd64/ ${MIRROR_URL}/dists/jammy-updates/${component}/binary-amd64/Packages.gz
+  wget -q -P dists/jammy-updates/${component}/binary-amd64/ ${MIRROR_URL}/dists/jammy-updates/${component}/binary-amd64/Packages.xz
 done
 
 # Check if dists directory exists
